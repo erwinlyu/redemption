@@ -22,7 +22,7 @@ public:
 
         // double pointer
         // very clever and intuitive thoughts
-        // proof:
+        // proof:https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N)-algorithm/7268
         // "We starts with the widest container, 
         // l = 0 and r = n - 1. Let's say the left one is shorter: h[l] < h[r]. 
         // Then, this is already the largest container the left one can possibly form. 
