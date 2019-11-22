@@ -18,9 +18,9 @@ public:
     void dfs(int depth, int index, string digits, string str){
         cout << "current depth " << depth << endl;
         if(depth == digits.size() - 1){
-            while(index < lut[digits[depth] - '0' - 2].size()){
+            while(index < lut[digits[depth] - '2'].size()){
                 cout << "current index is " << index << endl;
-                str += lut[digits[depth] - '0' - 2][index];
+                str += lut[digits[depth] - '2'][index];
                 vofs.push_back(str);
                 str.pop_back();
                 index++;
@@ -28,9 +28,9 @@ public:
             return ;
         }
         else{
-            while(index < lut[digits[depth] - '0' - 2].size()){
+            while(index < lut[digits[depth] - '2'].size()){
                 cout << "current index is " << index << endl;
-                str += lut[digits[depth] - '0' - 2][index];
+                str += lut[digits[depth] - '2'][index];
                 dfs(depth + 1, 0, digits, str);
                 str.pop_back();
                 index++;
