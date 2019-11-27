@@ -9,6 +9,9 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
 
+        // method 1: two pointers
+        // the fastest method
+/*         
         // it turns out that there is a case whose head is null
         if(head == NULL || head->next == NULL)  return head;
 
@@ -30,6 +33,15 @@ public:
             }
             else    break;
         }
-        return dummy->next;
+        return dummy->next; */
+
+        // method 2: recursive way, a smart yet elusive algorithm
+        // spent less memory yet runtime increased
+        // reference: https://leetcode.com/problems/swap-nodes-in-pairs/discuss/11030/My-accepted-java-code.-used-recursion.
+        if(head == NULL || head->next == NULL)  return head;
+        ListNode *ptr = head->next;
+        head->next = swapPairs(head->next->next);
+        ptr->next = head;
+        return ptr;
     }
 };
