@@ -11,9 +11,6 @@ public:
         // maintain two parameters, the remaining number of left and right parentheses which could
         // be added to the tail of existing string.
         // track their number until the both meet 0.
-        // maintain two parameters, the remaining number of left and right parentheses which could
-        // be added to the tail of existing string.
-        // track their number until both of them meet 0.
         // reference: https://leetcode.com/problems/generate-parentheses/discuss/10105/Concise-recursive-C%2B%2B-solution
         vector<string> result;
         if(n == 0)  return result;
