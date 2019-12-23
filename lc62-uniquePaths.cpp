@@ -15,6 +15,10 @@ public:
         // return backtracking(m - 1, n - 1, memo);
         // return nonRecursion(m, n);
     }
+
+    // other methods: one row dp[] and formula:
+    // https://leetcode.com/problems/unique-paths/discuss/22954/C%2B%2B-DP
+    // https://leetcode.wang/leetCode-62-Unique-Paths.html
 private:
     int backtrack(int m, int n, vector<vector<int>>& memo){
         if(m == 0 && n != 0)    return backtrack(0, n - 1, memo);
