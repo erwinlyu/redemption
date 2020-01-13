@@ -2,6 +2,14 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+
+/* reference:https://leetcode.com/problems/edit-distance/discuss/25846/C%2B%2B-O(n)-space-DP
+    dp[i][j] means the minimum operations to convert word1[0,...,i) to word2[0,...,j)
+    if word1[i] == word2[j], the State transition equation is dp[i][j] = dp[i-1][j-1];
+    if word1[i] != word2[j], there would be 3 different cases:
+        1) word1[i] needs to be replace by word2[j], dp[i][j] = dp[i-1][j-1]+1;
+        2) word1[0,...,i-1) == word2[0,...,j), so word1[i] needs to be deleted, dp[i][j] = dp[i-1][j]+1;
+        3) word1[0,..,i) + word2[j] == word2[0,..,j), so word1[i] needs to add a letter, dp[i][j] = dp[i][j-1]+1; */
 class Solution {
 public:
     int minDistance(string word1, string word2) {
@@ -22,6 +30,7 @@ private:
         return dp[wLen1][wLen2];
     }
 
+    // the 2D dp matrix can be pruned into a vector
     int dp_1D(string word1, string word2) {
         int m = word1.size(), n = word2.size(), pre;
         vector<int> dp(m + 1, 0);
