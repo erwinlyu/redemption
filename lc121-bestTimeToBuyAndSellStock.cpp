@@ -42,7 +42,6 @@ public:
     // method 3: Kadane's algorithm.
     // a dp algorithm, to solve "maximum subarray sum" problem.
     // transition equation: dp[i] = max(0, arr[i] - arr[i-1]) + arr[i] for i in [1, n-1]
-    // also a O(n) algorithm but faster than method 1 & 2. (4ms vs. 8ms).
     // ref:https://hackernoon.com/kadanes-algorithm-explained-50316f4fd8a6
     int kadanes_algorithm(vector<int>& prices) {
         int cur = 0, maxSoFar = 0, days = prices.size();
