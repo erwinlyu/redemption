@@ -9,7 +9,8 @@ public:
     }
 private:
     bool solve(vector<vector<char>>& board) {
-        /* backtracking without pruning. O(9^n), n is the number of blanks. */
+        /* backtracking without pruning. O(9^n), n is the number of blanks.
+        ref:https://leetcode.com/problems/sudoku-solver/discuss/15752/Straight-Forward-Java-Solution-Using-Backtracking */
         for (int i = 0; i < 9; ++i) {
             for (int j = 0; j < 9; ++j) {
                 if (board[i][j] != '.') continue;
