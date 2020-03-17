@@ -17,5 +17,31 @@ public:
             x1 &= mask;
         }
         return x1;
+
+        /* 与上面代码具有相同的思想不过更简洁
+        // 可以从掩码的角度去考虑,也可以从状态机的角度去考虑
+        // ref分别是
+        // https://zhuanlan.zhihu.com/p/113849406
+        // https://zhuanlan.zhihu.com/p/113846542
+        int once = 0, twice = 0;
+        for (int x : nums) {
+            once = (once ^ x) & (~twice);
+            twice  = (twice ^ x) & (~once);
+        }
+        return once;
+        */
+    }
+
+    // method 2: 逐位统计,不如位操作快但也是O(1)空间
+    int method_2(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < 32; ++i) {
+            int cnt = 0;
+            for (int num : nums) {
+                cnt += (num >> i) & 1;
+            }
+            res |= (cnt % 3) << i;
+        }
+        return res;
     }
 };
