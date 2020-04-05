@@ -4,7 +4,7 @@ class Solution {
 public:
     /**
      * 方法一：递归,略. 时间复杂度O(n^2), 空间复杂度O(N)
-     * 方法二：非递归: 辅助单调栈
+     * 方法二：非递归: 辅助单调栈. 时间空间复杂度都是O(N), 因为每个节点均入/出栈一次.
      * 思想: https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/
     */
     bool verifyPostorder(std::vector<int>& postorder) {
