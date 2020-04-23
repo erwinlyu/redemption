@@ -4,59 +4,62 @@
 using namespace std;
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
+    vector<vector<int> > permute(vector<int>& nums) {
         if(nums.empty())    return res;
-        visited.resize(nums.size());
+        n = nums.size();
+        vector<bool> visited(n, false);
         vector<int> permutation;
-        //dfsBased(nums, permutation, visited, 0);
-        swapBased(nums, 0);
+        //backtrack(nums, permutation, visited);
+        swap_method(nums, 0);
         return res;
     }
 private:
-    vector<vector<int>> res;
-    vector<bool> visited = {false};
+    vector<vector<int> > res;
+    int n;
 
-    // method 1: dfs method
-    void dfsBased(vector<int>& nums, vector<int> pmt, vector<bool>& visited, int idx){
-        if(pmt.size() == nums.size()){
+    // method 1: backtracking method
+    void backtrack(vector<int>& nums, vector<int> pmt, vector<bool>& visited){
+        if(pmt.size() == n){
             res.push_back(pmt);
-            return ;
+            return;
         }
-        for(int i = 0; i < nums.size(); ++i){
+        for(int i = 0; i < n; ++i){
             if(visited[i] == true)  continue;
             pmt.push_back(nums[i]);
             visited[i] = true;
-            dfsBased(nums, pmt, visited, idx + 1);
-            visited[i] = false;
+            backtrack(nums, pmt, visited);
             pmt.pop_back();
+            visited[i] = false;
         }
     }
 
-    // method 2: swap based method, a little bit slower than dfs yet consumes less memory
+    // method 2: swap based method, consumes less memory.
     // reference:https://leetcode.com/problems/permutations/discuss/18247/My-elegant-recursive-C%2B%2B-solution-with-inline-explanation
     // Basic idea: permutation of A[1..n] equals to
     // A[1] + permutation of (A[1..n] - A[1])
     // A[2] + permutation of (A[1..n] - A[2])
     // ...
     // A[n] + permutation of (A[1..n] - A[n]).
-    void swapBased(vector<int>& nums, int idx){
-        if(idx >= nums.size()){
+    void swap_method(vector<int>& nums, int begin){
+        if(begin >= n){
             res.push_back(nums);
-            return ;
+            return;
         }
-        for(int i = idx; i < nums.size(); ++i){
-            swap(nums[idx], nums[i]);
-            swapBased(nums, idx + 1);
-            swap(nums[idx], nums[i]);
+        for(int i = begin; i < n; ++i){
+            swap(nums[begin], nums[i]);
+            swap_method(nums, begin + 1);
+            swap(nums[begin], nums[i]);
         }
     }
 };
+
 int main(){
-    vector<int> input = {1,2,3};
+    vector<int> input{1,2,3,4,5};
     Solution sln;
-    vector<vector<int>> output = sln.permute(input);
-    for(vector<int> item1 : output){
-        for(int item2 : item1)  cout << item2 << " ";
+    auto output = std::move(sln.permute(input));
+    cout << output.size() << endl;
+    for (auto row : output) {
+        for (auto i : row)  cout << i << " ";
         cout << endl;
     }
     return 0;
